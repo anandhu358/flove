@@ -1,0 +1,256 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>ForLove ❤️</title>
+
+<link rel="stylesheet"
+      href="{% static 'css/style.css' %}">
+```
+
+</head>
+
+<body>
+
+```
+<!-- Progress Bar -->
+
+<div id="progress-bar"></div>
+
+<!-- Navbar -->
+
+<nav>
+
+    <a href="{% url 'home' %}">❤️ Home</a>
+
+    <a href="{% url 'story' %}">📖 Story</a>
+
+    <a href="{% url 'reasons' %}">💖 Reasons</a>
+
+    <a href="{% url 'counter' %}">⏳ Together</a>
+
+    <a href="/lock/">🔒 Secret</a>
+
+    <a href="{% url 'gallery' %}">📸 Gallery</a>
+
+</nav>
+
+<!-- Music Button -->
+
+<button id="music-btn">
+    🎵
+</button>
+
+<audio id="player"></audio>
+
+<!-- Floating Hearts -->
+
+<div class="hearts">
+
+    <span>❤️</span>
+    <span>💖</span>
+    <span>💕</span>
+    <span>💗</span>
+    <span>💓</span>
+    <span>❤️</span>
+
+</div>
+
+<!-- Main Content -->
+
+{% block content %}
+{% endblock %}
+
+<!-- Footer -->
+
+<footer>
+
+    <p>Made with ❤️ for someone special</p>
+
+    <p>Every memory here means the world to me.</p>
+
+</footer>
+
+<!-- Progress Bar Script -->
+
+<script>
+
+window.addEventListener("scroll", () => {
+
+    let scrollTop =
+        document.documentElement.scrollTop;
+
+    let scrollHeight =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+
+    let progress =
+        (scrollTop / scrollHeight) * 100;
+
+    document.getElementById("progress-bar")
+        .style.width = progress + "%";
+});
+
+</script>
+
+<!-- Music Script -->
+
+<script>
+
+const songs = [
+
+    "{% static 'audio/song1.mp3' %}",
+    "{% static 'audio/song2.mp3' %}",
+    "{% static 'audio/song3.mp3' %}"
+
+
+];
+
+const player =
+    document.getElementById("player");
+
+const button =
+    document.getElementById("music-btn");
+
+let currentSong =
+    parseInt(
+        localStorage.getItem("currentSong")
+    ) || 0;
+
+let savedTime =
+    parseFloat(
+        localStorage.getItem("musicTime")
+    ) || 0;
+
+let wasPlaying =
+    localStorage.getItem("musicPlaying")
+    === "true";
+
+player.src = songs[currentSong];
+
+player.addEventListener(
+    "loadedmetadata",
+    () => {
+
+        player.currentTime = savedTime;
+
+        if(wasPlaying){
+
+            player.play();
+
+            button.innerText = "🎵";
+        }
+
+    }
+);
+
+button.addEventListener(
+    "click",
+    () => {
+
+        if(player.paused){
+
+            player.play();
+
+            localStorage.setItem(
+                "musicPlaying",
+                true
+            );
+
+        }else{
+
+            player.pause();
+
+            localStorage.setItem(
+                "musicPlaying",
+                false
+            );
+
+        }
+
+    }
+);
+
+setInterval(() => {
+
+    localStorage.setItem(
+        "musicTime",
+        player.currentTime
+    );
+
+    localStorage.setItem(
+        "currentSong",
+        currentSong
+    );
+
+},1000);
+
+player.addEventListener(
+    "play",
+    () => {
+
+        localStorage.setItem(
+            "musicPlaying",
+            true
+        );
+
+    }
+);
+
+player.addEventListener(
+    "pause",
+    () => {
+
+        localStorage.setItem(
+            "musicPlaying",
+            false
+        );
+
+    }
+);
+
+player.addEventListener(
+    "ended",
+    () => {
+
+        currentSong++;
+
+        if(currentSong >= songs.length){
+
+            currentSong = 0;
+        }
+
+        localStorage.setItem(
+            "currentSong",
+            currentSong
+        );
+
+        localStorage.setItem(
+            "musicTime",
+            0
+        );
+
+        player.src =
+            songs[currentSong];
+
+        player.play();
+
+    }
+);
+
+</script>
+```
+
+</body>
+
+</html>

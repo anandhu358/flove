@@ -1,0 +1,74 @@
+{% extends 'love/base.html' %}
+
+{% block content %}
+
+<div class="page fade-in">
+
+    <h1>❤️ A Letter For You ❤️</h1>
+
+    <div class="letter-box">
+
+        <p id="letter"></p>
+
+    </div>
+
+</div>
+
+<script>
+
+const text = `
+എന്റെ പ്രിയദമി,
+
+ഇത്രെയും നാൾ എന്നെ എനിക്ക് എത്രെ അധികം സ്നേഹം തരാമോ അത്രേം തന്നു പരിചരിച്ചു കൂടെ കൂട്ടി എന്നെ നിന്റെ ഒരു സ്വമതം ശരീര അവയവം പോലെ പരിചരിച്ചു എനിക്ക് എന്നത്രെ സ്നേഹം തരാമോ അത്രേം തന്ന എന്നെ വഴക് പറഞ്ഞു ഞാനും ആയി അടികൾ ഉണ്ടാക്കി , ഒരു രീതിയിലും ഒത്തു പോവാൻ പറ്റാത്ത അവസ്ഥയിൽ പോലും എന്നെ ചേർത്ത പിടിച്ചു എന്നോട് ഷെമിച്ചു പൊറുത്തു എന്നുള്ളിലെ മൂടികിടന്ന സ്നേഹം കണ്ടെത്തി നീ.
+                  ഓരോ വാക്കിലും , നോക്കിലും , ഓരോ സാഹചര്യത്തിലും എന്നെ ഒരു കന്ദം പോലെ നിന്നിലോട്ടു അടിപ്പിച്ചു നീ എന്ന ലഹരിയിൽ ഞാൻ സ്വയം മറന്നു സ്വന്തം ജീവിതം ജീവിക്കുമ്പോൾ പോലും ഞാൻ ആവുന്ന ഞാൻ എന്ന നിന്നെ കുറിച്ച ഓർക്കാത്ത ഒരു നിമിഷം പോലും എന്റെ ജീവിതത്തിൽ കൂടെ കടന്ന് പോയിട്ടു ഇല്ല എന്റെ പൊന്നോമനെ.
+Thankyou so much for being in my life ❤️ ,
+
+I've never imagined a life like this before meeting you, never thought my life would get into something like this. Even with all these difficulties in my life i'll still sit back and think maybe this is all because of you, imagine how a person can get wealthy about everything in his life. There are some sort of things a human want's to explore especially about boys. Yeah it's true maybe we have ego, maybe we are rough, cold, bla, blahhhhhh, whatever it is we still care for our loved ones🥹, never thought you can change me like  this at all, never thought you would become someone who can control me, manipulates me and the end, someone who can love me like no other human's exist in the whole universe.
+
+
+Trust me when i say this  " I LOVE YOU" For my entire life. I want you only you to spent the rest of my entire life with.
+Of course there will be fights, late night calls, the sort of things whatever it is at the end we have something called love between us that will be enough to hold us tight i guess😁
+
+
+Aha apo ini thall oke kainj sherik olla kryangal parayam😁
+Nee oru mandi athan firssssst krym, nee oru mandi oru potti oru monapi, kizhangi , shundari, shuttumani
+ente ponn chakkara shundarii mwolll
+
+Ente ponn mwole entha ipo nine kurich parayuvaaa
+avalde oru undakkannum aana mookkum pne Nh polathe rand purikavum mothothi aal oru shundri package ahn
+pakshe ondlo vaa thorana theern enthokke paranjalm ninak enne bhayankara ishtam ahnen enik ariya 😁
+kuttam parayan pattilla ithre oru chullan payyan ayit kootkoodiya pne oshtam thonille😁 Enikm pakshe angne ahdi 
+Ninne kettipidich njan ethre neram venelm irnolm enik enth ishtano ath pakshe bhagyam nmk anukoolam ayond athin pattar illa angne 
+ishtam nn oke prnj ne enne ith akkuvonm vnda enthokke prnjalm enikka kodthal ishtam 
+
+Njan adhyavait ninak oru html page ondakki thann ath pakshe onmm ariyillrn ath ipolm illa ath vidd athin alallo ivde prasakthi
+apo prnj vnnath njn ondakiyath ninde oru birthday khh korch irikne sneham oke on edth showcase nn edth porth vech onn kanikkan vecha 
+njn ariyno ee kurish ente thalel avuvennnn🥹 ahaaaaaaaaaaa enthayalm varan ollath vazhiyil thangilla
+enthayalam kittiyath kitti ini ipo noki alle pattu🥹.
+
+Alla pne enthokke prnjalm ishtam oke ond kto enik ille pne enik entua pranth ano ith ipo irn ithre ondakn
+enik poi kidn orangikude eee aana kuttik oke vndi samayam kalayan ayittt
+
+
+Nee podi aana thadichiiii
+`;
+
+let i = 0;
+
+function typeWriter(){
+
+    if(i < text.length){
+
+        document.getElementById("letter").innerHTML += text.charAt(i);
+
+        i++;
+
+        setTimeout(typeWriter,50);
+    }
+}
+
+typeWriter();
+
+</script>
+
+{% endblock %}
